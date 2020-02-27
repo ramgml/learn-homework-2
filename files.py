@@ -11,13 +11,26 @@
 * Замените точки в тексте на восклицательные знаки
 * Сохраните результат в файл referat2.txt
 """
+import re
+
 
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
+    with open('referat.txt', 'r') as referat_file:
+        file_text = referat_file.read()
+
+    print(f'Длина текста: {len(file_text)}')
+    words = re.findall(r'(\w+)', file_text)
+
+    print(f'Количество слов: {len(words)}')
+    changed_text = re.sub(r'\.', '!', file_text)
+
+    with open('referat2.txt', 'w') as referat_file:
+        referat_file.write(changed_text)
+
 
 if __name__ == "__main__":
     main()
