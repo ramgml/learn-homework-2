@@ -23,10 +23,11 @@ def main():
         file_text = referat_file.read()
 
     print(f'Длина текста: {len(file_text)}')
-    words = re.findall(r'(\w+)', file_text)
 
+    words = file_text.split()
     print(f'Количество слов: {len(words)}')
-    changed_text = re.sub(r'\.', '!', file_text)
+
+    changed_text = file_text.replace('.', '!')
 
     with open('referat2.txt', 'w') as referat_file:
         referat_file.write(changed_text)
