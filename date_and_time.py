@@ -8,8 +8,8 @@
 * Превратите строку "01/01/17 12:10:03.234567" в объект datetime
 
 """
-from datetime import datetime, date
-from dateutils import relativedelta
+import calendar
+from datetime import datetime, date, timedelta
 
 
 def print_days():
@@ -17,9 +17,15 @@ def print_days():
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    print(date.today() - relativedelta(days=1))
+    print(date.today() - timedelta(days=1))
     print(date.today())
-    print(date.today() - relativedelta(months=1))
+
+    today = date.today()
+    month = 12 if today.month - 1 < 1 else today.month - 1
+    year = today.year - 1 if today.month - 1 < 1 else today.year
+    day = min(today.day, calendar.monthrange(year, month)[1])
+
+    print(date(year, month, day))
 
 
 def str_2_datetime(string):
